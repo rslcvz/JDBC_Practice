@@ -60,6 +60,7 @@ public class SpartanTestsWithParameters {
     // Get header returns String, you cannt assert with a number.
     assertEquals ("17", response.getHeader("content-length"));
 
+
 }
 
 

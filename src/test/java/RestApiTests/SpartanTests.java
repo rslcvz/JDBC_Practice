@@ -4,6 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.*;
 import static org.testng.Assert.assertEquals;
@@ -12,14 +13,15 @@ import static org.testng.Assert.assertTrue;
 public class SpartanTests {
 
     String spartanAllURL = "http://3.83.88.105:8000/api/spartans/";
+    @BeforeClass
+    public static void setUp() {
 
-    @Test
-    public void viewAllSpartansTest() {
-        Response response = RestAssured.get(spartanAllURL);
-        System.out.println("Success");
-        System.out.println(response.statusCode());
-//        System.out.println(response.body().asString());
-        response.body().prettyPrint();
+        // Base URL   http://3.83.88.105:8000/api
+        //BASE URI means all API end point share this portion.
+        //We dont have to write everything  -- You can give more specific
+        RestAssured.baseURI = "http://54.164.29.19";
+        RestAssured.port = 8000;
+        RestAssured.basePath = "/api";
     }
     /*
     Given accept type is JSon
