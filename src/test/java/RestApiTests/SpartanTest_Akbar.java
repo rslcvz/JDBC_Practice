@@ -3,11 +3,11 @@ package RestApiTests;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.BeforeAll;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.*;
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.AssertJUnit.*;
 
 public class SpartanTest_Akbar {
 
@@ -99,5 +99,36 @@ public class SpartanTest_Akbar {
             assert response.asString().contains("Spartan Not Found");
 
 
+    }
+
+    @Test
+    public void Search_By_Providing_Query_Parameter(){
+
+        // give some parameters and get male people
+        Response response = given()
+                .accept(ContentType.JSON)
+                .queryParam("gender", "Male")  // you can also use   .param
+                .get("/spartans/search");
+
+        assertEquals(200, response.statusCode());
+        assertFalse(response.asString().contains("Female"));
+        response.prettyPrint();
+
+        System.out.println(response.path("pageable.sort.sorted").toString());
+
+    }
+
+    @Test
+    public void SingleSpartanData_Json_FieldValue_Test(){
+
+        Response response=
+
+                given().pathParam("id", 2).when().get("/spartans/{id}");
+        response.prettyPrint();
+
+              System.out.println(   response.path("name").toString()  );
+              System.out.println(   response.path("phone").toString()  );
+
+              assertEquals("Nels", response.path("name").toString());
     }
     }
