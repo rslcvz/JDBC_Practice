@@ -1,6 +1,7 @@
 package RestApiTests;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -22,8 +23,9 @@ public class SpartanTest_Akbar {
         RestAssured.port = 8000;
         RestAssured.basePath = "/api";
     }
+
     @Test
-    public void Spartan_All_Test(){
+    public void Spartan_All_Test() {
         Response response = get("/spartans/");
         // to get status code
         assertEquals(200, response.statusCode());
@@ -38,9 +40,10 @@ public class SpartanTest_Akbar {
 
 
     }
+
     @Test
-    public void SingleSpartanData_Test(){
-        
+    public void SingleSpartanData_Test() {
+
         Response response = get("/spartans/2");
         System.out.println("response.asString() = " + response.asString());
         response.prettyPrint();
@@ -50,15 +53,51 @@ public class SpartanTest_Akbar {
 
         // I wanna make sure this name exist
         assert response.asString().contains("Nels");
-
     }
+
+        @Test
+        public void SingleSpartanDataWithHeader_Test () {
+
+        //   Request Specification object hold the info about the request
+            //like header, path variable, query parameters, body
+            //Response is the object to store Response data
+
+            //   This is how we can path header to the request
+           Response response = given()
+//                   .header("accept", "application/json")  <-- They are accepting as JSON
+                   .accept(ContentType.JSON)    //  <-- They are accepting as JSON
+                   .when()
+                   .get("/spartan/2");
+
+            assertEquals("application/json;charset=UTF-8", response.contentType());
+
+        }
+
     @Test
-    public void InvalidSpartanId_ShouldReturn_404_test(){
-        Response response = get("/spartans/2");
-        response.prettyPrint();
-        assertEquals("application/json;charset=UTF-8", response.contentType());
-        assertEquals(200, response.statusCode());
+    public void SingleSpartanDataWithHeaderXmlStatusCode_406_Test () {
+        //   This is how we can path header to the request
+        Response response = given()
+//                   .header("accept", "application/json")  <-- They are accepting as JSON
+                .accept(ContentType.XML)    //  <-- They are accepting as JSON
+                .when()
+                .get("/spartans/2");
 
-        assert response.asString().contains("Nels");
+        //Gives you whole line of Status code
+        System.out.println(response.statusLine());
+        assertEquals(406, response.statusCode());
+
+
+        }
+        @Test
+        public void InvalidSpartanId_ShouldReturn_404_test () {
+            Response response =
+                    given().pathParam("my_id", 20000).when().get("/spartans/{my_id}");
+            response.prettyPrint();
+            assertEquals("application/json;charset=UTF-8", response.contentType());
+            assertEquals(404, response.statusCode());
+
+            assert response.asString().contains("Spartan Not Found");
+
+
     }
-}
+    }
