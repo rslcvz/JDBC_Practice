@@ -1,5 +1,6 @@
 package RecursionCollection;
 
+
 public class RecursionPractice {
 
     public static void main(String[] args) {
@@ -15,6 +16,7 @@ public class RecursionPractice {
         }
         System.out.print(n + " ");
     }
+
 
     public static void Recursion2(int m) {
         //If you wanna increase a number.
