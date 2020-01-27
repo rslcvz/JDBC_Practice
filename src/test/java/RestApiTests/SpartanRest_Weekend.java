@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.*;
 import static org.testng.AssertJUnit.*;
@@ -16,7 +17,7 @@ public class SpartanRest_Weekend {
 
     @BeforeClass
     public static void setUp() {
-        RestAssured.baseURI = "http://54.164.29.19";
+        RestAssured.baseURI = "http://3.83.190.136";
         RestAssured.port = 8000;
         RestAssured.basePath = "/api";
     }
@@ -94,4 +95,31 @@ public class SpartanRest_Weekend {
 
 
     }
+
+    // get single Spartan as json response by calling /api/spartans/{id}
+    // store it inside a Map of String and Object
+    // do some assertion expected value you already set
+    @Test
+    public void getASingle_Spartan_Inside_Map(){
+
+        Response response = given().pathParam("my_id", 3).get("/spartans/{my_id}");
+       Map<String, ?> oneSpartan =  get().jsonPath().getMap("");
+        System.out.println("oneSpartan = " + oneSpartan.get("spartan_name"));
+        
+    }
+
+    @Test
+    public void All_Spartan_Mao_Test(){
+
+        Response response = get("/spartans");
+
+        List< Map<String, ?> >  allSpartans = response.jsonPath().getList("");
+//        System.out.println("allSpartans = " + allSpartans);
+        
+        for(Map<String, ?> each : allSpartans){
+            System.out.println("each = " + each);
+        }
+    }
+
+
 }
