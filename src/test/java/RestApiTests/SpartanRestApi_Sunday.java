@@ -40,8 +40,24 @@ public class SpartanRestApi_Sunday {
                 .statusCode(200)
                 .body("phone", hasSize(104)).header("Transfer-Encoding", "chunked")
                  .contentType("application/json;charset=UTF-8")
-                 .header("date", notNullValue());
+                 .header("date", notNullValue());  //  <- You can use .header or .body
 
     }
 
+    // logging in RestAssured
+    @Test
+    public void Single_Spartan_LoggingAll_Details_Test(){
+
+        given()
+                .pathParam("my_id", 3)
+                .log().all()   //  <--  Gives every request as a log
+        .when()
+                 .get("/spartans/{my_id}")
+        .then()
+                .log().ifValidationFails()  // <-- If any validation fail, it gives us as a log.
+                 .statusCode(200)
+        ;
+
+
+    }
 }

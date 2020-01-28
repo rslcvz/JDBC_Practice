@@ -66,7 +66,8 @@ public class SpartanTests {
     public void getASpartanTest(){
 
            Response response = when().get(spartanAllURL + 4);
-           assertEquals(200, response.statusCode());
+
+           assertEquals(201, response.statusCode());
            assertEquals("application/json;charset=UTF-8", response.contentType());
            assertTrue(response.body().asString().contains("Paige"));
        }
