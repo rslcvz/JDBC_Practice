@@ -6,13 +6,10 @@ import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class Pojo_As_A_Body {
+public class Negative_Api_Testing {
     @BeforeClass
     public static void setUp() {
         RestAssured.baseURI = ConfigurationReader.get("spartan.base_url");
@@ -28,7 +25,7 @@ public class Pojo_As_A_Body {
 
          */
 
-                                                                            // Number was complaining I put L at the end
+        // Number was complaining I put L at the end
         Spartan spartan = new Spartan(13, "Fenevbahce", "Male", 635262536298L);
 
 
@@ -46,7 +43,7 @@ public class Pojo_As_A_Body {
     }
     @Test
     public void Add_NewSpartan_Negative_Test() {
-        Spartan spartan = new Spartan(13, "M", "F", 638L);
+        Spartan spartan = new Spartan(13, "M", "Female", 635262536298L);
 
 
         given()
@@ -59,13 +56,8 @@ public class Pojo_As_A_Body {
                 .assertThat()
                 .statusCode(400)
                 .body("error", is("Bad Request"))
-                .body("errors.defaultMessage", hasSize(3))
-                 .body("errors.defaultMessage"
-                         , hasItems("Gender should be either Male or Female"
-                                 , "name should be at least 2 character and max 15 character"))
-                     .body("message", containsString("Error count: 3"))
-
-                    ;
+                .body("errors.defaultMessage", hasItem("name should be at least 2 character and max 15 character"));
 
     }
 }
+

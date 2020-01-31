@@ -1,5 +1,11 @@
 package RestApiTests;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class Spartan {
     private int id;
     private String name;
@@ -16,11 +22,14 @@ public class Spartan {
         this.gender = gender;
         this.phone = phone;
     }
-
+@JsonIgnore       // This will enable us to ignore ID field from being written into JSon
     public int getId() {
+
         return id;
     }
 
+    @JsonProperty   // This will specifically tell to write this into Pojo from json.
+                    // This will happen when you do deserialize
     public void setId(int id) {
         this.id = id;
     }
@@ -48,4 +57,16 @@ public class Spartan {
     public void setPhone(long phone) {
         this.phone = phone;
     }
+
+    @Override
+    public String toString() {
+        return "Spartan{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", phone=" + phone +
+                '}';
+    }
 }
+
+
