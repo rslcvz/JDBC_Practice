@@ -1,4 +1,3 @@
-
 Feature: User Get Spartan Data
   Scenario : Authenticated User Should be able to Get Spartan Data
     Given Credentials with USER_role is provided

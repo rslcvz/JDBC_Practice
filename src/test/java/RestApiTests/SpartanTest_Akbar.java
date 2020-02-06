@@ -3,7 +3,6 @@ package RestApiTests;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.BeforeAll;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.*;
@@ -128,7 +127,6 @@ public class SpartanTest_Akbar {
 
               System.out.println(   response.path("name").toString()  );
               System.out.println(   response.path("phone").toString()  );
-
               assertEquals("Nels", response.path("name").toString());
     }
     }

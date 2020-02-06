@@ -1,6 +1,7 @@
 package JDBC_PracticeMuhtar;
 
-import org.testng.annotations.BeforeMethod;
+
+import org.junit.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.sql.Connection;
@@ -16,7 +17,7 @@ public class JDBC_TestCases {
     Connection connection = DriverManager.getConnection(url, username, password);
     Statement statement ;
 
-    @BeforeMethod
+    @BeforeClass
     public void setUp(){
         String url="jdbc:oracle:thin:@3.83.88.105:1521:xe";
         String username ="hr";
