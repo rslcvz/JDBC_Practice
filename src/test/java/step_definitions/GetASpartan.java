@@ -38,5 +38,6 @@ public class GetASpartan {
     @Then("user should be able get status code {int}")
     public void user_should_be_able_get_status_code(Integer int1) {
 
+
     }
 }
