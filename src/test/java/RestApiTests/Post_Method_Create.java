@@ -22,9 +22,9 @@ public class Post_Method_Create {
     public void Add_NewSpartan_Test() {
 
         Map<String, Object> bodyMap = new HashMap<String, Object>();
-        bodyMap.put("id", 22);
-        bodyMap.put("name", "Yasin");
-        bodyMap.put("gender", "Male");
+        bodyMap.put("id", 486);
+        bodyMap.put("name", "Myra");
+        bodyMap.put("gender", "Female");
         bodyMap.put("phone", "12189113345");
 
         given()
@@ -36,7 +36,7 @@ public class Post_Method_Create {
                 .statusCode(201)
                 .contentType(ContentType.JSON)
                 .body("success", is("A Spartan is Born!"))
-                .body("data.name", equalToIgnoringCase("Yasin"))
+                .body("data.name", equalToIgnoringCase("Myra"))
                 .body("data.phone", hasToString("12189113345"));   // 201  Created
 
     }
