@@ -1,11 +1,13 @@
 package step_definitions;
 
+import RestApiTests.HamCrestLibrary;
 import Utils.ConfigurationReader;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
@@ -13,7 +15,7 @@ import static org.hamcrest.Matchers.*;
 import static io.restassured.RestAssured.*;
 
 public class GetASpartan {
-
+    RequestSpecification requestSpecification;
     Response response;
     @Before
     public void setUp(){
@@ -31,7 +33,7 @@ public class GetASpartan {
     @When("user need to send get request on {string}")
     public void user_need_to_send_get_request_on(String string) {
 
-        when().get("/spartans/157").prettyPeek().then().statusCode(200);
+       response = when().get("/spartans");
 
     }
 
@@ -39,5 +41,6 @@ public class GetASpartan {
     public void user_should_be_able_get_status_code(Integer int1) {
 
 
+     response.then().statusCode(200);
     }
 }

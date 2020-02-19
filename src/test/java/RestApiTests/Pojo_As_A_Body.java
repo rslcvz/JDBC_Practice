@@ -1,12 +1,15 @@
 package RestApiTests;
 
 import Utils.ConfigurationReader;
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -46,6 +49,8 @@ public class Pojo_As_A_Body {
     }
     @Test
     public void Add_NewSpartan_Negative_Test() {
+
+
         Spartan spartan = new Spartan(13, "M", "F", 638L);
 
 
@@ -67,5 +72,7 @@ public class Pojo_As_A_Body {
 
                     ;
 
+        List<String> str = new ArrayList<String>();
+        Map<Integer, String> abc = new HashMap<Integer, String>();
     }
 }

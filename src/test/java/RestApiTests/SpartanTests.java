@@ -6,6 +6,8 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
 import static io.restassured.RestAssured.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -48,8 +50,9 @@ public class SpartanTests {
     @Test
     public void viewAllSpartansTest3() {
 
+
               // request part
-                 given().accept(ContentType.JSON)
+                 given().accept(ContentType.XML)
                 .when().get(spartanAllURL)
                   //  response part
                 .then().statusCode(200)

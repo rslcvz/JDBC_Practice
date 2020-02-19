@@ -5,6 +5,7 @@ import io.restassured.http.ContentType;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.testng.Assert;
+import org.testng.IDynamicGraph;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -32,6 +33,7 @@ public class HamCrestLibrary {
 
         assertThat(30, equalTo(a + b));
         assertThat(20, greaterThan(5 + 5));
+        assertThat(30, is(3 * 10));
 
     }
 

@@ -31,14 +31,13 @@ public class DeserializingJsonToJavaObject {
     public void Add_NewSpartan_WithPojo_AsBody_Test() {
         Spartan spartan = new Spartan(13, "Fenevbahce", "Male", 635262536298L);
 
-
-        given()
+         given()
                 .log().all()
                 .contentType(ContentType.JSON)
                 .body(spartan)
                 .when()
-                .post("/spartans")
+                .get("/spartans")
                 .then()
-                .statusCode(201);
+                .statusCode(200);
     }
 }
