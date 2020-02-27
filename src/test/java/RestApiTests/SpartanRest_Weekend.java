@@ -120,6 +120,4 @@ public class SpartanRest_Weekend {
             System.out.println("each = " + each);
         }
     }
-
-
 }

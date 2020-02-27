@@ -2,7 +2,9 @@ package RestApiTests;
 
 import Utils.ConfigurationReader;
 import io.restassured.RestAssured;
+import javafx.scene.layout.Priority;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class TestBase {
     @BeforeClass

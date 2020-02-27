@@ -6,6 +6,7 @@ import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import javax.xml.ws.Response;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,11 +16,14 @@ import static org.hamcrest.Matchers.*;
 public class Post_Method_Create {
     @BeforeClass
     public static void setUp() {
+
         RestAssured.baseURI = ConfigurationReader.get("spartan.base_url");
     }
 
     @Test
     public void Add_NewSpartan_Test() {
+
+        Response response;
 
         Map<String, Object> bodyMap = new HashMap<String, Object>();
         bodyMap.put("id", 486);
