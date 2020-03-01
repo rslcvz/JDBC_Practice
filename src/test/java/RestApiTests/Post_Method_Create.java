@@ -36,12 +36,15 @@ public class Post_Method_Create {
                 .contentType(ContentType.JSON)
                 .body(bodyMap).when()
                 .post("/spartans")
+
                 .then()
                 .statusCode(201)
                 .contentType(ContentType.JSON)
                 .body("success", is("A Spartan is Born!"))
                 .body("data.name", equalToIgnoringCase("Myra"))
                 .body("data.phone", hasToString("12189113345"));   // 201  Created
-   //IntelliJ changes
+
+        //Git Hub Changes
+
     }
 }
