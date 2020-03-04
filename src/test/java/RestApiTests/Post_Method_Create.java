@@ -3,6 +3,7 @@ package RestApiTests;
 import Utils.ConfigurationReader;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import jdk.nashorn.internal.parser.Token;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -17,6 +18,7 @@ public class Post_Method_Create {
     @BeforeClass
     public static void setUp() {
 
+        Response token ;
         RestAssured.baseURI = ConfigurationReader.get("spartan.base_url");
     }
 
@@ -34,7 +36,8 @@ public class Post_Method_Create {
         given()
                 .log().all()
                 .contentType(ContentType.JSON)
-                .body(bodyMap).when()
+                .body(bodyMap).
+                when()
                 .post("/spartans")
 
                 .then()
