@@ -5,13 +5,17 @@ import java.util.*;
 public class RemoveDuplicates {
     public static void main(String[] args) {
 
-        String [] str = {"A", "D", "A"};
+//        String [] str = {"A", "D", "A", "D", "D"};
 
-        List<String> dc = Arrays.asList(str);
-        Set<String> abc = new HashSet<String>(dc);
-        System.out.println("abc = " + abc);
+        String yasin = "ABBCDDDEEE";
+        String [] ddd = yasin.split("");
 
-        //Sumeyye degisiklik yapti
+        List<String> abc = Arrays.asList(ddd);
+
+        Set<String> hashSet = new HashSet<String>(abc);
+        System.out.println("Hashset " + hashSet);
+
+
 
     }
 }

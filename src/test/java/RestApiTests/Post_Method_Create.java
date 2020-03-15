@@ -33,10 +33,13 @@ public class Post_Method_Create {
         bodyMap.put("gender", "Female");
         bodyMap.put("phone", "12189113345");
 
+        // given part where we declare our format and body within the request specification
         given()
                 .log().all()
                 .contentType(ContentType.JSON)
                 .body(bodyMap).
+
+
                 when()
                 .post("/spartans")
 

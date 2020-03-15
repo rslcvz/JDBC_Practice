@@ -52,7 +52,7 @@ public class SpartanTests {
 
 
               // request part
-                 given().accept(ContentType.XML)
+                 given().accept(ContentType.JSON)
                 .when().get(spartanAllURL)
                   //  response part
                 .then().statusCode(200)
